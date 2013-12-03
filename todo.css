@@ -1,0 +1,74 @@
+*{
+margin:0;
+padding:0;}
+
+button{
+	margin:20px 0 0 20px;
+	width:500px;
+	padding:20px 0;
+	background:#A1B2C3;
+	border:1px solid red;
+	border-radius:10px;
+	box-shadow:10px 10px 10px green;
+	cursor:pointer;
+	font-size:20px;
+	font-weight:italic;
+}
+
+#myText{
+padding:20px;
+margin:20px 0 0 20px;
+border:1px solid red;
+border-radius:10px;
+display:none;
+}
+
+
+#listButton,#addTodo{
+width:1023px;
+}
+
+#addTodo{
+display:none;
+}
+
+#myResult{
+display:none;
+padding:20px;
+margin:20px 0 0 20px;
+width:500px;
+overflow:hidden;
+}
+
+
+a{
+text-decoration:none;
+margin-left:10px;
+float:right;
+color:red;
+}
+
+#itemAdded,#noItems,#Items{
+width:1023px;
+background:green;
+text-align:center;
+margin:20px;
+border-radius:10px;
+}
+
+#Items{
+display:none;
+}
+
+p{
+padding:10px;
+font-size:25px;
+}
+
+#noItems{
+background:#a1b2c3;
+}
+
+#itemAdded{
+display:none;
+}
