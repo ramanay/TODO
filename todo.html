@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>To Do</title>
+<link href="todo.css" type="text/css" rel="stylesheet" >
+<script src="jquery.js"></script>
+</head>
+<body>
+
+<div class="container">
+<header>
+    <ul id="menu">       
+        <li id="home"><a href="#"><button>HOME</button></a></li>
+        <li id="add"><a href="#"><button>ADD</button></a></li>
+		<li id="list"><a href="#"><button>LIST</button></a></li>
+    </ul>
+</header>	
+<section>
+	<div class="no-todo message"><p>YOU HAVE NO TASKS TO DO</p></div>
+	<div class="have-todo message"><p>YOU HAVE TASKS TO DO</p></div>
+    <div id="list-container">
+    </div>
+	<div class="deleted message"><p>TASK DELETED</p></div>
+</section>
+<section>
+    <div id="add-container">
+        <input class="text-task" type="text" placeholder="What Do You Want To Do?" />
+        <button class="add-button">Remind me</button>
+		<div class="added message"><p>TASK ADDED</p></div>
+    </div>
+</section>
+<footer>
+    <p>&copyCopyrights owned by Ramana 2013</p>
+</footer>
+</div>
+<script src="todo.js" type="text/javascript" language="javascript" ></script>
+</body>
