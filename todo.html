@@ -4,24 +4,34 @@
 <title>To Do</title>
 <link href="todo.css" type="text/css" rel="stylesheet" >
 <script src="jquery.js"></script>
-<script src="todo.js" type="text/javascript" language="javascript" ></script>
 </head>
-
 <body>
-<section class="todoContainer">
-	<div class="home">
-		<button id="homeButton"> HOME </button>
-		<button id="addButton"> ADD </button>
-		<button id="listButton"> LIST </button>
-		<div id="noItems"><p>YOU HAVE NO THINGS TO DO</p></div>
-		<div id="Items"><p>YOU HAVE PENDINGS TO DO</p></div>
-	</div>
-	<button id="addTodo"> ADD THE TO DO ITEM </button>
-	<textarea id="myText" rows="3" cols="120" placeholder="To Do"></textarea>
-	<div id="itemAdded"><p>Item Added</p></div>
-	<div id="myResult">
-		<div id="result"></div>
-	</div>	
+
+<div class="container">
+<header>
+    <ul id="menu">       
+        <li id="home"><a href="#"><button>HOME</button></a></li>
+        <li id="add"><a href="#"><button>ADD</button></a></li>
+		<li id="list"><a href="#"><button>LIST</button></a></li>
+    </ul>
+</header>	
+<section>
+	<div class="no-todo message"><p>YOU HAVE NO TASKS TO DO</p></div>
+	<div class="have-todo message"><p>YOU HAVE TASKS TO DO</p></div>
+	<div class="deleted message"><p>TASK DELETED</p></div>
+    <div id="list-container">
+    </div>
 </section>
+<section>
+    <div id="add-container">
+        <input class="text-task" type="text" placeholder="What Do You Want To Do?" />
+        <button class="add-button">Remind me</button>
+		<div class="added message"><p>TASK ADDED</p></div>
+    </div>
+</section>
+<footer>
+    <p>&copyCopyrights owned by Ramana 2013</p>
+</footer>
+</div>
+<script src="todo.js" type="text/javascript" language="javascript" ></script>
 </body>
-</html>
