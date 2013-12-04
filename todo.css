@@ -30,11 +30,16 @@ color:#FFF;
 font-weight:bold;
 }
 
+.myTask{
+padding:1%;
+}
+
 #list button{
 width:98%;
 }
 
 #add-container{
+display:none;
 width:80%;
 clear:both;
 padding:1%;
