@@ -1,83 +1,83 @@
-$(document).ready(function(){
-	var bindEvents = function(){
-		$('#addButton').click(function(){
-			$('#listButton').slideUp();
-			$('#noItems').slideUp();  /*This is temporary should chang based on length of storage*/
-			$('#myText').slideDown();
-			$('#myResult').slideUp();
-			$('#addTodo').slideDown();
-			$('#Items').slideUp();
-			$('#addTodo').click(function(){
-				var a = $('#myText').val();
-				var ToDo = a;
-				if(a!=""){
-					localStorage.setItem(localStorage.length,ToDo);
-					$('#myText').val("");
-					$('#itemAdded').slideDown(500);	
-					$('#itemAdded').slideUp(500);	
-					
-				}
-			
-			});
-		});
-		$('#homeButton').click(function(){
-			$('#listButton').slideDown();
-			$('#myText').slideUp();
-			$('#addTodo').slideUp();
-			$('#itemAdded').slideUp();
-			window.location.reload();
-		
-		});
-		$('#listButton').click(function(){
-			$('#myResult').slideDown();			
-		});
-	
-		$('a').click(function(){
-			var toDelete = $(this).parent().text();
-			for(var i = 0;i<localStorage.length;i++){
-				var myKey = localStorage.key(i);
-				var myVal = localStorage.getItem(myKey);
-				var toCheck = myVal+"delete"
-				if(toDelete == toCheck){
-					localStorage.removeItem(myKey);
-					$('#result').empty();
-					for(var i = 0;i<=localStorage.length;i++){
-						if(i!=myKey){
-							if(localStorage.getItem(i) != null){
-								var z="<p>"+localStorage.getItem(i)+"<a href="+"'#' class='myAnchor'>delete</a>"+"</p>";
-								$('#result').append(z);			
-							}
-						}
-					}
-				}
-			}	
-		})
-		
-	}
-	
-	var init = function(){
-		if(localStorage.length != 0){
-			$('#noItems').slideUp();$('#Items').slideDown();
-			for(var j = 0;j<=localStorage.length;j++){
-				if(localStorage.getItem(j)!= null){
-					var z="<p>"+localStorage.getItem(j)+"<a href="+"'#' class='myAnchor'>delete</a>"+"</p>";
-					$('#result').append(z);
-				}
+var TODO = (function(){
+    var  
+	selectors = {
+        menu: '#menu',
+        listContainer: '#list-container',
+        addContainer: '#add-container',
+        addButton: '.add-button',
+        textTask: '.text-task',
+		deleted: '.deleted',
+		done: '.no-todo',
+		pending: '.have-todo'
+    },
+    bindEvents = function() {
+        $(selectors.menu).on('click','li', handleMenu);
+        $(selectors.addContainer).on('click','.add-button',addTask);
+		$(selectors.listContainer).on('click','a',deleteTask)
+    };var showOnce = 1;
+    handleMenu = function() {
+        
+		if( $(this).attr('id') == 'home' ) {
+            $(selectors.listContainer).hide();
+            $(selectors.addContainer).hide();
+        } else if( $(this).attr('id') == 'add' ) {
+            $(selectors.listContainer).hide();
+            $(selectors.addContainer).show();
+        }else if( $(this).attr('id') == 'list' ) {
+            
+			$(selectors.listContainer).show();
+            $(selectors.addContainer).hide();
+			if(localStorage.length > 1){
+				if(showOnce == 1){
+				listTasks();      
+				showOnce++;
+				}	
 			}
-		}
-		if(localStorage.length == 0 ){$('#Items').slideUp();}
+			else{
+				$(selectors.done).show();
+				$(selectors.listContainer).hide();
+			}
+        };
+		
+    },
+	
+    addTask = function() {
+        var $textTask = $(selectors.addContainer).find(selectors.textTask);	
+        if(localStorage.length <= 1){localStorage.setItem('index',0);}
+		var refIndex = localStorage.getItem('index');
+		if( $textTask.val() ) {
+							localStorage.setItem(refIndex,$textTask.val());
+							refIndex++;
+							localStorage.setItem('index',refIndex);							
+        };
+    },
+    listTasks = function() {
+        var totalTasks = localStorage.length;
+        if( totalTasks > 0 ) {
+			for(var i=0, len=totalTasks; i<len; i++) {
+				if(localStorage.getItem(i)!= null){
+					var myTask = "<p id='todo-"+i+"'>"+localStorage.getItem(i)+"<a class='delete-anchor' id='"+i+"' href='#'>DONE</a></p>";
+					$(selectors.listContainer).append(myTask);
+				}
+            }
+        } else {
+        }
+    },
+	
+	deleteTask = function(){
+		localStorage.removeItem($(this).attr('id'));
+		$(this).parent().css("display","none");
+		listTasks;
+		return true;
 	}
-	
-	var storageTest = function(){
-		if(typeof localStorage ==! 'undefined')
-		alert('your browser do not support local Storage');
-		else{
-		init();
-		bindEvents();	
-		}
-		}
-	storageTest();
-	
-	
+        
+    return {
+        init: function() {
+            bindEvents();
+        }
+    };
+})();
+$(document).ready(function(){
+    var k = 0;
+	TODO.init();
 });
-					
