@@ -45,9 +45,9 @@ var TODO = (function(){
 			$(selectors.pending).hide();
 			$(selectors.done).hide();
         }else if( $(this).attr('id') == 'list' ) {
-			$(selectors.listContainer).show(1000);
             $(selectors.addContainer).hide();
 			if(localStorage.length > 1){
+				$(selectors.listContainer).show(1000);
 				if(showOnce == 1){
 				listTasks();      
 				showOnce++;
